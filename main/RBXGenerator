@@ -61,7 +61,7 @@ function module:GetRandomWord(probs)
 			local response = HttpGETRequest('https://random-word-api.herokuapp.com/word?number=1&length='..tostring(probs.length))
 			if response then
 				if module.DebugMode == true then
-					print("Response successful.. "..tostring(response[0]).." "..tostring(response))
+					print("Response successful..")
 
 				end
 				return response
@@ -322,6 +322,5 @@ local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/
 local probs = {
     ["length"] = 5,
 }
-module.DebugMode = true
-print(module:GetRandomWord(probs))
+print(module:GetRandomWord(probs)[0])
 --]]
