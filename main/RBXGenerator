@@ -50,6 +50,7 @@ function module:GetRandomWordV1(probs)
 	end
 end
 function module:GetRandomWord(probs)
+    local res
 	if module.DebugMode == true then
 		print("Reading properties...")
 	end
@@ -64,7 +65,7 @@ function module:GetRandomWord(probs)
 					print("Response successful..")
 
 				end
-				return response
+				res = response
 			else
 				if module.DebugMode == true then
 					print("Response failed returned null")
@@ -81,9 +82,11 @@ function module:GetRandomWord(probs)
 						print("Function ended with code -1..")
 
 					end
-					return
+					res = response
+					return response
 				end
 			end
+			res = response
             return response
 		end)
 		print(s,m[0])
@@ -104,11 +107,11 @@ function module:GetRandomWord(probs)
 					print("Function ended with exception "..tostring(m))
 
 				end
-				return
+				return res
 			end
 		end
 	end
-
+    return res
 end
 function module:GetRandomWords(probs)
 	if module.DebugMode == true then
