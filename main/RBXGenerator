@@ -64,7 +64,7 @@ function module:GetRandomWord(probs)
 					print("Response successful..")
 
 				end
-				return response[0]
+				return response
 			else
 				if module.DebugMode == true then
 					print("Response failed returned null")
@@ -318,7 +318,7 @@ function module:GetRandomWords(probs)
 end
 return module
 --[[
-local module = loadstring(game:HttpGet("",true))()
+local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXRandomWordGenerator/main/main/RBXGenerator",true))()
 local probs = {
     ["length"] = 5,
 }
