@@ -86,6 +86,7 @@ function module:GetRandomWord(probs)
 			end
 
 		end)
+		print(s,m)
 		if m  then
 
 			if module.DebugMode == true then
@@ -322,5 +323,6 @@ local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/
 local probs = {
     ["length"] = 5,
 }
-print(module:GetRandomWord(probs)[0])
+module.DebugMode = true
+print(module:GetRandomWord(probs))
 --]]
