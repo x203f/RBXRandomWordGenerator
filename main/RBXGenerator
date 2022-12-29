@@ -27,7 +27,7 @@ function module:GetRandomWordV1(probs)
 					print("Response successful..")
 
 				end
-				return response[0]
+				return response
 			else
 				if module.DebugMode == true then
 					print("Response failed returned null")
