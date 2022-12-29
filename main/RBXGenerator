@@ -123,7 +123,7 @@ function module:GetRandomWords(probs)
 			if module.DebugMode == true then
 				print("Making request")
 			end
-			local response = HttpGETRequest('https://random-word-api.herokuapp.com/word?number='..tostring(probs.amount)..'&length='..tostring(probs.length))
+			local response = HttpGETRequest('https://random-word-api.herokuapp.com/word?number='..probs.amount..'&length='..probs.length)
 			if response then
 				if module.DebugMode == true then
 					print("Response successful.. writing to res")
