@@ -114,6 +114,7 @@ function module:GetRandomWord(probs)
     return res
 end
 function module:GetRandomWords(probs)
+    local res
 	if module.DebugMode == true then
 		print("Reading properties...")
 	end
@@ -145,10 +146,11 @@ function module:GetRandomWords(probs)
 						print("Function ended with code -1..")
 
 					end
+					return res
 				end
 			end
 		end)
-		if m  then
+		if m and s == false then
 
 			if module.DebugMode == true then
 				print("Response failed returned null")
@@ -165,6 +167,7 @@ function module:GetRandomWords(probs)
 					print("Function ended with exception "..tostring(m))
 
 				end
+				return res
 			end
 		end
 	elseif probs.length ~= nil and probs.amount == nil then
@@ -175,10 +178,10 @@ function module:GetRandomWords(probs)
 			local response = HttpGETRequest('https://random-word-api.herokuapp.com/word?number='..tostring(module.DefailtWordAmount)'&length='..tostring(probs.length))
 			if response then
 				if module.DebugMode == true then
-					print("Response successful..")
+					print("Response successful.. writing to res")
 
 				end
-				return response
+				res = response
 			else
 				if module.DebugMode == true then
 					print("Response failed returned null")
@@ -195,10 +198,11 @@ function module:GetRandomWords(probs)
 						print("Function ended with code -1..")
 
 					end
+					return res
 				end
 			end
 		end)
-		if m  then
+		if m and s == false then
 
 			if module.DebugMode == true then
 				print("Response failed returned null")
@@ -215,6 +219,7 @@ function module:GetRandomWords(probs)
 					print("Function ended with exception "..tostring(m))
 
 				end
+				return res
 			end
 		end
 	elseif probs.length == nil and probs.amount ~= nil then
@@ -228,7 +233,7 @@ function module:GetRandomWords(probs)
 					print("Response successful..")
 
 				end
-				return response
+				res = response
 			else
 				if module.DebugMode == true then
 					print("Response failed returned null")
@@ -245,10 +250,11 @@ function module:GetRandomWords(probs)
 						print("Function ended with code -1..")
 
 					end
+					return res
 				end
 			end
 		end)
-		if m  then
+		if m and s == false then
 
 			if module.DebugMode == true then
 				print("Response failed returned null")
@@ -265,6 +271,7 @@ function module:GetRandomWords(probs)
 					print("Function ended with exception "..tostring(m))
 
 				end
+				return res
 			end
 		end
 	else
@@ -278,7 +285,7 @@ function module:GetRandomWords(probs)
 					print("Response successful..")
 
 				end
-				return response
+				res = response
 			else
 				if module.DebugMode == true then
 					print("Response failed returned null")
@@ -295,10 +302,11 @@ function module:GetRandomWords(probs)
 						print("Function ended with code -1..")
 
 					end
+					return res
 				end
 			end
 		end)
-		if m  then
+		if m and s == false then
 
 			if module.DebugMode == true then
 				print("Response failed returned null")
@@ -315,10 +323,11 @@ function module:GetRandomWords(probs)
 					print("Function ended with exception "..tostring(m))
 
 				end
+				return res
 			end
 		end
 	end
-
+    return res
 end
 return module
 --[[
@@ -327,5 +336,27 @@ local probs = {
     ["length"] = 5,
 }
 module.DebugMode = true
-print(module:GetRandomWord(probs))
+local wordlol = module:GetRandomWord(probs)
+for i,word in pairs(wordlol)
+    print(word)
+end
+
+
+
+
+
+local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXRandomWordGenerator/main/main/RBXGenerator",true))()
+local probs = {
+    ["length"] = 5,
+    ["amount"] = 10,
+}
+module.DebugMode = true
+local wordlol = module:GetRandomWords(probs)
+for i,word in pairs(wordlol)
+    print(word)
+end
+
+
+
+
 --]]
