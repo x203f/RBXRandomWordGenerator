@@ -1,0 +1,327 @@
+
+local HTTP = game:GetService("HttpService")
+local module = {
+	BreakScriptOnException = false,
+	HandleExceptions = true,
+	DebugMode = false,
+	DefaultWordLength = 5,
+	DefailtWordAmount = 1,
+}
+function HttpGETRequest(url)
+	return HTTP:JSONDecode(game:HttpGet(url,true))
+end
+
+
+function module:GetRandomWordV1(probs)
+	if module.DebugMode == true then
+		print("Reading properties...")
+	end
+	if probs.length ~= nil then
+		local s,m = pcall(function()
+			if module.DebugMode == true then
+				print("Making request")
+			end
+			local response = HttpGETRequest('https://random-word-api.herokuapp.com/word?number=1&length='..tostring(probs.length))
+			if response then
+				if module.DebugMode == true then
+					print("Response successful..")
+
+				end
+				return response[0]
+			else
+				if module.DebugMode == true then
+					print("Response failed returned null")
+
+				end
+				if module.BreakScriptOnException == true then
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+					return
+				else
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+				end
+			end
+		end)
+	end
+end
+function module:GetRandomWord(probs)
+	if module.DebugMode == true then
+		print("Reading properties...")
+	end
+	if probs.length ~= nil then
+		local s,m = pcall(function()
+			if module.DebugMode == true then
+				print("Making request")
+			end
+			local response = HttpGETRequest('https://random-word-api.herokuapp.com/word?number=1&length='..tostring(probs.length))
+			if response then
+				if module.DebugMode == true then
+					print("Response successful..")
+
+				end
+				return response[0]
+			else
+				if module.DebugMode == true then
+					print("Response failed returned null")
+
+				end
+				if module.BreakScriptOnException == true then
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+					error("HttpGet Failed to create request")
+				else
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+					return
+				end
+			end
+
+		end)
+		if m  then
+
+			if module.DebugMode == true then
+				print("Response failed returned null")
+
+			end
+			if module.BreakScriptOnException == true then
+				if module.DebugMode == true then
+					print("Function ended with exception "..tostring(m))
+
+				end
+				error("Process returned exception: "..tostring(m))
+			else
+				if module.DebugMode == true then
+					print("Function ended with exception "..tostring(m))
+
+				end
+				return
+			end
+		end
+	end
+
+end
+function module:GetRandomWords(probs)
+	if module.DebugMode == true then
+		print("Reading properties...")
+	end
+	if probs.length ~= nil and probs.amount ~= nil then
+		local s,m = pcall(function()
+			if module.DebugMode == true then
+				print("Making request")
+			end
+			local response = HttpGETRequest('https://random-word-api.herokuapp.com/word?number='..tostring(probs.amount)..'&length='..tostring(probs.length))
+			if response then
+				if module.DebugMode == true then
+					print("Response successful..")
+
+				end
+				return response
+			else
+				if module.DebugMode == true then
+					print("Response failed returned null")
+
+				end
+				if module.BreakScriptOnException == true then
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+					error("HttpGet Failed to create request")
+				else
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+				end
+			end
+		end)
+		if m  then
+
+			if module.DebugMode == true then
+				print("Response failed returned null")
+
+			end
+			if module.BreakScriptOnException == true then
+				if module.DebugMode == true then
+					print("Function ended with exception "..tostring(m))
+
+				end
+				error("Process returned exception: "..tostring(m))
+			else
+				if module.DebugMode == true then
+					print("Function ended with exception "..tostring(m))
+
+				end
+			end
+		end
+	elseif probs.length ~= nil and probs.amount == nil then
+		local s,m = pcall(function()
+			if module.DebugMode == true then
+				print("Making request")
+			end
+			local response = HttpGETRequest('https://random-word-api.herokuapp.com/word?number='..tostring(module.DefailtWordAmount)'&length='..tostring(probs.length))
+			if response then
+				if module.DebugMode == true then
+					print("Response successful..")
+
+				end
+				return response
+			else
+				if module.DebugMode == true then
+					print("Response failed returned null")
+
+				end
+				if module.BreakScriptOnException == true then
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+					error("HttpGet Failed to create request")
+				else
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+				end
+			end
+		end)
+		if m  then
+
+			if module.DebugMode == true then
+				print("Response failed returned null")
+
+			end
+			if module.BreakScriptOnException == true then
+				if module.DebugMode == true then
+					print("Function ended with exception "..tostring(m))
+
+				end
+				error("Process returned exception: "..tostring(m))
+			else
+				if module.DebugMode == true then
+					print("Function ended with exception "..tostring(m))
+
+				end
+			end
+		end
+	elseif probs.length == nil and probs.amount ~= nil then
+		local s,m = pcall(function()
+			if module.DebugMode == true then
+				print("Making request")
+			end
+			local response = HttpGETRequest('https://random-word-api.herokuapp.com/word?number='..tostring(probs.amount)..'&length='..tostring(module.DefaultWordLength))
+			if response then
+				if module.DebugMode == true then
+					print("Response successful..")
+
+				end
+				return response
+			else
+				if module.DebugMode == true then
+					print("Response failed returned null")
+
+				end
+				if module.BreakScriptOnException == true then
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+					error("HttpGet Failed to create request")
+				else
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+				end
+			end
+		end)
+		if m  then
+
+			if module.DebugMode == true then
+				print("Response failed returned null")
+
+			end
+			if module.BreakScriptOnException == true then
+				if module.DebugMode == true then
+					print("Function ended with exception "..tostring(m))
+
+				end
+				error("Process returned exception: "..tostring(m))
+			else
+				if module.DebugMode == true then
+					print("Function ended with exception "..tostring(m))
+
+				end
+			end
+		end
+	else
+		local s,m = pcall(function()
+			if module.DebugMode == true then
+				print("Making request")
+			end
+			local response = HttpGETRequest('https://random-word-api.herokuapp.com/word?number='..tostring(module.DefailtWordAmount)..'&length='..tostring(module.DefaultWordLength))
+			if response then
+				if module.DebugMode == true then
+					print("Response successful..")
+
+				end
+				return response
+			else
+				if module.DebugMode == true then
+					print("Response failed returned null")
+
+				end
+				if module.BreakScriptOnException == true then
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+					error("HttpGet Failed to create request")
+				else
+					if module.DebugMode == true then
+						print("Function ended with code -1..")
+
+					end
+				end
+			end
+		end)
+		if m  then
+
+			if module.DebugMode == true then
+				print("Response failed returned null")
+
+			end
+			if module.BreakScriptOnException == true then
+				if module.DebugMode == true then
+					print("Function ended with exception "..tostring(m))
+
+				end
+				error("Process returned exception: "..tostring(m))
+			else
+				if module.DebugMode == true then
+					print("Function ended with exception "..tostring(m))
+
+				end
+			end
+		end
+	end
+
+end
+return module
+--[[
+local module = loadstring(game:HttpGet("",true))()
+local probs = {
+    ["length"] = 5,
+}
+module.DebugMode = true
+print(module:GetRandomWord(probs))
+--]]
