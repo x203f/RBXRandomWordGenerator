@@ -86,7 +86,7 @@ function module:GetRandomWord(probs)
 			end
             return response
 		end)
-		print(s,m)
+		print(s,m[0])
 		if m and s == false then
 
 			if module.DebugMode == true then
