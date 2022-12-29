@@ -114,7 +114,7 @@ function module:GetRandomWord(probs)
     return res
 end
 function module:GetRandomWords(probs)
-    local res
+    local res = {}
 	if module.DebugMode == true then
 		print("Reading properties...")
 	end
@@ -129,7 +129,7 @@ function module:GetRandomWords(probs)
 					print("Response successful..")
 
 				end
-				return response
+				res = response
 			else
 				if module.DebugMode == true then
 					print("Response failed returned null")
@@ -282,7 +282,7 @@ function module:GetRandomWords(probs)
 			local response = HttpGETRequest('https://random-word-api.herokuapp.com/word?number='..tostring(module.DefailtWordAmount)..'&length='..tostring(module.DefaultWordLength))
 			if response then
 				if module.DebugMode == true then
-					print("Response successful..")
+					print("Response successful.. writing to res")
 
 				end
 				res = response
