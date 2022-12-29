@@ -114,7 +114,7 @@ function module:GetRandomWord(probs)
     return res
 end
 function module:GetRandomWords(probs)
-    local res = {}
+    local res
 	if module.DebugMode == true then
 		print("Reading properties...")
 	end
